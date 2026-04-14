@@ -45,8 +45,8 @@ The return for GetByEmail function needs to have double equals to compare member
 ### 4. Logic error: \BookRepository.cs(37,47): error CS0029: Cannot implicitly convert type 'int' to 'bool'
 GetById method in Book Repository needs to use double equals to find book with specified id!
 
-### 5. Error: BooksController.cs(69,20): error CS0160: A previous catch clause already catches all exceptions of this or of a super type ('ArgumentException')
-This error in the books controller has two catch blocks! I will comment our the second catch block to get rid of the error!
+### 5. Compiler Error: BooksController.cs(69,20): error CS0160: A previous catch clause already catches all exceptions of this or of a super type ('ArgumentException')
+This error code (CS0160) shows the first derived class which is the argument null exception should be the first to be checked and the second derived exception should be afterwards! I basically swapped the two catch blocks to resolve the error!
 
 ### 6. Config Error:  Unable to resolve service for type 'BuggyBackend.Repositories.IBookRepository' while attempting to activate 'BuggyBackend.Services.LibraryService'
 This error doesn't host api because program.cs was missing a build services statement.
@@ -55,3 +55,9 @@ builder.Services.AddSingleton<IBookRepository, BookRepository>();
 ### 7. No Swagger configuration(Not really a bug) add swashbuckle packages via Nuget, configure launch settings and updated program.cs!
 
 
+## Notes to Test!
+Test whether book copies are actually decrementing and incrementing!
+
+Testing Members endpoints!! (Members endpoints seem to be working as intended!)
+
+It seems like our controller endpoints are working as intended!

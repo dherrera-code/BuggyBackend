@@ -62,14 +62,14 @@ namespace BuggyBackend.Controllers
                 var createdBook = _bookService.AddBook(book);
                 return CreatedAtAction(nameof(GetById), new { id = createdBook.Id }, createdBook);
             }
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest(ex.Message);
+            }
             catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }
-            // catch (ArgumentNullException ex)
-            // {
-            //     return BadRequest(ex.Message);
-            // }
         }
 
         [HttpPut("{id}")]
@@ -80,13 +80,13 @@ namespace BuggyBackend.Controllers
                 var updatedBook = _bookService.UpdateBook(id, book);
                 return Ok(updatedBook);
             }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
-            }
             catch (KeyNotFoundException ex)
             {
                 return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
 
