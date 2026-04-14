@@ -61,3 +61,4 @@ Test whether book copies are actually decrementing and incrementing!
 Testing Members endpoints!! (Members endpoints seem to be working as intended!)
 
 It seems like our controller endpoints are working as intended!
+I am using the debug tool in vscode to look for any logic errors!
