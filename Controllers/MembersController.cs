@@ -63,6 +63,11 @@ namespace BuggyBackend.Controllers
         {
             try
             {
+                // if(string.IsNullOrWhiteSpace(member.Name) || string.IsNullOrWhiteSpace(member.Email))
+                // {
+                //     return BadRequest("Name and Email are required!");
+                // }
+
                 var createdMember = _memberService.AddMember(member);
                 return CreatedAtAction(nameof(GetById), new { id = createdMember.Id }, createdMember);
             }

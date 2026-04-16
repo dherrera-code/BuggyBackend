@@ -44,6 +44,7 @@ namespace BuggyBackend.Repositories
         {
             member.Id = _nextId++;
             member.MembershipDate = DateTime.Now;
+            member.BorrowedBookIds.Clear();
             _members.Add(member);
             return member;
         }

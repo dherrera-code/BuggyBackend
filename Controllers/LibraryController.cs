@@ -55,6 +55,9 @@ namespace BuggyBackend.Controllers
         public ActionResult<List<Transaction>> GetMemberTransactions(int memberId)
         {
             var transactions = _libraryService.GetMemberTransactions(memberId);
+
+            if(transactions is null) return BadRequest($"Member with id: {memberId} does not exist");
+
             return Ok(transactions);
         }
 

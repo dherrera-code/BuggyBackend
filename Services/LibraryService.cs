@@ -1,5 +1,6 @@
 using BuggyBackend.Models;
 using BuggyBackend.Repositories;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace BuggyBackend.Services
 {
@@ -79,6 +80,9 @@ namespace BuggyBackend.Services
 
         public List<Transaction> GetMemberTransactions(int memberId)
         {
+            var member = _memberRepository.GetById(memberId);
+            if(member is null) return null;
+
             return _transactionRepository.GetByMemberId(memberId);
         }
 

@@ -1,3 +1,12 @@
+# Daniel Herrera
+
+# 4/17/2026
+
+# Buggy Backend
+
+# Hosted Link:
+https://buggyapiassignmentdh-acdpd8hjazfpckd7.westus3-01.azurewebsites.net/
+
 # Library System API - Bug Documentation
 
 This is a buggy Library Management System API built with .NET and n-tier architecture. The system contains **20 intentional bugs** across different layers (Models, Repositories, Services, Controllers, and Configuration).
@@ -21,7 +30,7 @@ Logic Errors: 7
 Validation Errors: 6
 API Design Errors: 2
 
-### EXMPLE **Bug #1: Wrong HTTP Request method in MemberController**
+### EXAMPLE **Bug #1: Wrong HTTP Request method in MemberController**
 **Location**: `Controllers/MemberController.cs` - Line 38  
 **Type**: API Design Error  
 
@@ -37,9 +46,13 @@ API Design Errors: 2
 I didn't want to update my .Net to 10! In CSProj file, I changed Target Framework to 9.0 and reloaded window!
 
 ### 2. Syntax Error: MemberRepository.cs(23,69): error CS1010: Newline in constant
+**Location**: repository/MemberRepository 
+**type**: Syntax Error
 When initializing list of Members, the third entry was missing a quotation mark when entering email!
 
 ### 3. Logic Error: MemberRepository.cs(40,49): error CS0029: Cannot implicitly convert type 'string' to 'bool'!
+**Location**: repository/MemberRepository 
+**type**: logic Error
 The return for GetByEmail function needs to have double equals to compare members!
 
 ### 4. Logic error: \BookRepository.cs(37,47): error CS0029: Cannot implicitly convert type 'int' to 'bool'
@@ -54,6 +67,21 @@ builder.Services.AddSingleton<IBookRepository, BookRepository>();
 
 ### 7. No Swagger configuration(Not really a bug) add swashbuckle packages via Nuget, configure launch settings and updated program.cs!
 
+### 8. Input Validation for creating member within controller
+Moved input validation to the controller: MemberController! if(name or email) is empty or whitespaces! return bad request!
+
+### 9. Input validation: Library endpoint transaction members/membersId
+**Location**: libraryController And libraryService 
+**type**: input validation
+Change to return 400 for invalid member id!
+In Library Services: GetMemberTransactions function test if member id exist before getting transaction. if member does not exist, return null and if transactions is null in the controller, it will return a bad request!
+
+### 10. Bug where borrowedIds for created members have id 0 in Member controller!
+Location: Repository/MemberRepository
+Fix: MemberRepository:
+member.BorrowedBookIds.Clear();
+
+ When creating a new member, BorrowedBookIds are now empty upon creation instead of saving index 0 or any index. 
 
 ## Notes to Test!
 Test whether book copies are actually decrementing and incrementing!
