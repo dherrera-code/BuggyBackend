@@ -83,6 +83,16 @@ member.BorrowedBookIds.Clear();
 
  When creating a new member, BorrowedBookIds are now empty upon creation instead of saving index 0 or any index. 
 
+ ### 11. Validation Input: MemberService AND MemberRepository
+ Created function in repository to find name of members and in memberService test if name already exist! If name already exist in the list, throw new InvalidOperationException
+
+        var memberName = _memberRepository.GetByName(member.Name);
+        if(memberName != null)
+        {
+            throw new InvalidOperationException("A member with this name already exists");
+        }
+
+
 ## Notes to Test!
 Test whether book copies are actually decrementing and incrementing!
 

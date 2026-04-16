@@ -35,6 +35,14 @@ namespace BuggyBackend.Services
             return _memberRepository.GetByEmail(email);
         }
 
+        public Member GetMemberByName(string name)
+        {
+            if(string.IsNullOrWhiteSpace(name))
+            throw new ArgumentException("Name is required");
+
+            return _memberRepository.GetByName(name);
+        }
+
         public Member AddMember(Member member)
         {
             if (member == null)
@@ -56,6 +64,11 @@ namespace BuggyBackend.Services
             if (existingMember != null)
             {
                 throw new InvalidOperationException("A member with this email already exists");
+            }
+            var memberName = _memberRepository.GetByName(member.Name);
+            if(memberName != null)
+            {
+                throw new InvalidOperationException("A member with this name already exists");
             }
 
             return _memberRepository.Create(member);

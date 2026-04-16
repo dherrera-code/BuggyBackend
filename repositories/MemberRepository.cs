@@ -93,5 +93,11 @@ namespace BuggyBackend.Repositories
             }
             return false;
         }
+
+        public Member GetByName(string name)
+        {
+            return _members.FirstOrDefault(m => m.Name == name);
+        }
+
     }
 }

@@ -12,5 +12,7 @@ namespace BuggyBackend.Repositories
         bool Delete(int id);
         bool AddBorrowedBook(int memberId, int bookId);
         bool RemoveBorrowedBook(int memberId, int bookId);
+        Member GetByName(string name);
+
     }
 }
