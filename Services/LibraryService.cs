@@ -69,7 +69,7 @@ namespace BuggyBackend.Services
                 throw new InvalidOperationException("Book already returned");
             }
 
-            transaction.ReturnDate = DateTime.Now;
+            transaction.ReturnDate = DateTime.UtcNow;
             _transactionRepository.Update(transactionId, transaction);
 
             _bookRepository.IncrementCopies(transaction.BookId);
