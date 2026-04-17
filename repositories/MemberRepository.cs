@@ -43,7 +43,7 @@ namespace BuggyBackend.Repositories
         public Member Create(Member member)
         {
             member.Id = _nextId++;
-            member.MembershipDate = DateTime.Now;
+            member.MembershipDate = DateTime.UtcNow;
             member.BorrowedBookIds.Clear();
             _members.Add(member);
             return member;

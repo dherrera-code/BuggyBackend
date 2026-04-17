@@ -51,7 +51,11 @@ namespace BuggyBackend.Services
             {
                 throw new ArgumentException("Book author is required");
             }
-
+            // check if book title with same author and ISBN number already exist!
+            bool result = _bookRepository.DoesCopyAlreadyExist(book);
+            if(result) {
+                throw new ArgumentException("This book already exist in the database!");
+            }
             return _bookRepository.Create(book);
         }
 

@@ -96,5 +96,14 @@ namespace BuggyBackend.Repositories
             }
             return false;
         }
+
+        public bool DoesCopyAlreadyExist(Book book)
+        {
+            var checkBook = _books.FirstOrDefault(item => item.Title == book.Title && item.Author == book.Author && item.ISBN == book.ISBN);
+            if(checkBook is null) return false;
+
+            return true;
+        }
+
     }
 }

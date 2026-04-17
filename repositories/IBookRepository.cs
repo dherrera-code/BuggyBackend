@@ -12,5 +12,7 @@ namespace BuggyBackend.Repositories
         bool Delete(int id);
         bool DecrementCopies(int id);
         bool IncrementCopies(int id);
+        bool DoesCopyAlreadyExist(Book book);
+
     }
 }

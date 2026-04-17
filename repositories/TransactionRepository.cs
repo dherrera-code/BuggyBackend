@@ -41,7 +41,7 @@ namespace BuggyBackend.Repositories
         public Transaction Create(Transaction transaction)
         {
             transaction.Id = _nextId++;
-            transaction.BorrowDate = DateTime.Now;
+            transaction.BorrowDate = DateTime.UtcNow;
             _transactions.Add(transaction);
             return transaction;
         }

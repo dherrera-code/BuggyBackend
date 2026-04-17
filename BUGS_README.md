@@ -79,6 +79,7 @@ In Library Services: GetMemberTransactions function test if member id exist befo
 ### 10. Bug where borrowedIds for created members have id 0 in Member controller!
 Location: Repository/MemberRepository
 Fix: MemberRepository:
+
 member.BorrowedBookIds.Clear();
 
  When creating a new member, BorrowedBookIds are now empty upon creation instead of saving index 0 or any index. 
@@ -91,7 +92,13 @@ member.BorrowedBookIds.Clear();
         {
             throw new InvalidOperationException("A member with this name already exists");
         }
+## 12. Change DateTime.Now to DateTime.UtcNow when creating member, and transaction dates. Better performance. ()
+Repository/ MemberRepository 
+Repository/ TransactionRepository
 
+## 13. Found bug that allows creation of the same book in the fake database list.
+Location: BookService 
+Added function to check if Book already exist before creating and saving an instance of a book into our database list!
 
 ## Notes to Test!
 Test whether book copies are actually decrementing and incrementing!
