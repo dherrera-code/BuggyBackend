@@ -94,7 +94,7 @@ namespace BuggyBackend.Services
         public List<Book> GetOverdueBooks()
         {
             var activeTransactions = _transactionRepository.GetActiveTransactions();
-            var overdueDate = DateTime.Now.AddDays(-14);
+            var overdueDate = DateTime.UtcNow.AddDays(-14);
             
             var overdueBookIds = activeTransactions
                 .Where(t => t.BorrowDate < overdueDate)

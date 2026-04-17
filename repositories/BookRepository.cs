@@ -99,7 +99,7 @@ namespace BuggyBackend.Repositories
 
         public bool DoesCopyAlreadyExist(Book book)
         {
-            var checkBook = _books.FirstOrDefault(item => item.Title == book.Title && item.Author == book.Author && item.ISBN == book.ISBN);
+            var checkBook = _books.FirstOrDefault(item => item.ISBN == book.ISBN);
             if(checkBook is null) return false;
 
             return true;

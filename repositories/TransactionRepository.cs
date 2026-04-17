@@ -9,8 +9,19 @@ namespace BuggyBackend.Repositories
 
         public TransactionRepository()
         {
-            _transactions = new List<Transaction>();
-            _nextId = 1;
+            _transactions = new List<Transaction>
+            {
+                new Transaction
+                {
+                    Id = 1,
+                    MemberId = 1,
+                    BookId = 1,
+                    BorrowDate = DateTime.Now.AddDays(-15),
+                    ReturnDate = null
+                }
+
+            };
+            _nextId = 2;
         }
 
         public List<Transaction> GetAll()
